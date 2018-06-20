@@ -1,0 +1,41 @@
+#(1) If-else logic program:
+
+#Choose three memory locations that you will use to represent the variables #a, b, and c and store three integer values in these memory locations.  Then, #write a program that performs the following logic:
+
+#if((a - b) > 0) c = 1; —> if(b-a < 0) c=1;
+#else c = a - b; —> else c = a-b;
+
+#if(b-a < 0) c=1;
+0XB002 # LA 2
+0X200c # STORE A (a=2)
+0x100c # LOAD A
+0x900d # SUB B (accum= b-a <0)
+0x4000 # MVAC (ctr= b-a)
+0x600A # JLT ALTB (if CTR = b-a <0, goto altb)
+
+# else c=a-b;
+0x100d # LOAD B
+0x900c # SUB A (accum= a-b)
+0x200e # STORE C
+
+# goto ageb; 
+0x700C # JMP AGEB
+
+# altb: c=1;
+0xB001 # LOAD 1
+0x200e # STORE C
+
+# ageb:
+0X0 # AGEB: HALT
+0X0 # PAD: HALT
+0X0 # PAD: HALT
+0X0 # PAD: HALT
+0X0 # PAD: HALT
+
+#
+#————data
+#A:     # offset 0x0c
+#B:     # offset 0x0d
+#C:     # offset 0x0e
+
+
